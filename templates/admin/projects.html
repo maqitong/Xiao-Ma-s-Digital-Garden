@@ -1,0 +1,101 @@
+{% extends "admin/layout.html" %}
+{% set active_page = "projects" %}
+
+{% block title %}Manage Projects{% endblock %}
+
+{% block content %}
+<div class="space-y-8">
+
+    <!-- Add Project Form -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b border-gray-100 bg-gray-50">
+            <h3 class="font-bold text-gray-800 text-lg">Add New Project</h3>
+        </div>
+        <div class="p-6">
+            <form action="/admin/projects/add" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Project Title</label>
+                    <input type="text" name="title"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                        required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Category</label>
+                    <input type="text" name="category" placeholder="e.g. Web App, Mobile, Design"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                        required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Image URL</label>
+                    <input type="text" name="image_url" placeholder="/static/..."
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                        required>
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Project Link</label>
+                    <input type="text" name="link" placeholder="https://..."
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                        required>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
+                    <textarea name="description" rows="3"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                        required></textarea>
+                </div>
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Tags (comma separated)</label>
+                    <input type="text" name="tags" placeholder="React, Python, AWS"
+                        class="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none">
+                </div>
+                <div class="md:col-span-2">
+                    <button type="submit" class="px-6 py-2 bg-cyan-600 text-white rounded-lg hover:bg-cyan-700">Create
+                        Project</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Projects List -->
+    <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div class="p-6 border-b border-gray-100 bg-gray-50">
+            <h3 class="font-bold text-gray-800 text-lg">Existing Projects</h3>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left">
+                <thead class="bg-gray-50 text-gray-600 font-medium border-b">
+                    <tr>
+                        <th class="px-6 py-4">Image</th>
+                        <th class="px-6 py-4">Title</th>
+                        <th class="px-6 py-4">Category</th>
+                        <th class="px-6 py-4">Actions</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    {% for project in projects %}
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <img src="{{ project.image_url }}" class="w-12 h-12 rounded object-cover bg-gray-200"
+                                alt="">
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="font-bold text-gray-800">{{ project.title }}</div>
+                            <div class="text-sm text-gray-500 truncate max-w-xs">{{ project.description }}</div>
+                        </td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-blue-50 text-blue-600 rounded text-xs font-medium">{{
+                                project.category }}</span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <a href="/admin/projects/delete/{{ project.id }}" class="text-red-500 hover:text-red-700"
+                                onclick="return confirm('Delete this project?')">Delete</a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

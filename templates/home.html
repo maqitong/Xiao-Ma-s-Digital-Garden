@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<!-- saved from url=(0072)https://readdy.link/preview/69b7b19d-d7f2-4f01-bc23-34addb3f417a/5503083 -->
+<html lang="zh-CN">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Xiao Ma's Digital Garden - Personal Portfolio &amp; Resume</title>
+    <meta
+        content="Xiao Ma's Digital Garden - A modern personal website showcasing resume, projects, photography, videos and blog articles"
+        name="description" />
+    <meta content="personal portfolio,resume,projects,photography,blog,digital garden" name="keywords" />
+    <link href="https://fonts.googleapis.com/" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link href="{{ url_for('static', path='home_files/css2.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='home_files/all.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='home_files/remixicon.min.css') }}" rel="stylesheet" />
+    <script crossorigin="" src="{{ url_for('static', path='home_files/index-DzpddGlb.js') }}" type="module"></script>
+    <link crossorigin="" href="{{ url_for('static', path='home_files/index-XAWxHLPb.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='home_files/css2(1).css') }}" rel="stylesheet" />
+    <script async="" src="{{ url_for('static', path='home_files/array.full.min.js') }}"></script>
+</head>
+
+<body>
+    <div id="root">
+        <div class="min-h-screen bg-slate-950" style="font-family: Poppins, sans-serif;">
+            <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+                style="font-family: Poppins, sans-serif;">
+                <div class="max-w-7xl mx-auto px-8">
+                    <div class="flex items-center justify-between h-20"><a
+                            class="flex items-center gap-3 group cursor-pointer" data-discover="true"
+                            href="{{ url_for('home') }}">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all duration-300 group-hover:scale-105">
+                                <span class="text-white text-2xl font-bold">M</span>
+                            </div><span class="text-white font-semibold text-lg tracking-wide hidden md:block">Xiao Ma's
+                                Digital
+                                Garden</span>
+                        </a>
+                        <div class="flex items-center gap-1"><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-cyan-400 bg-cyan-500/10"
+                                data-discover="true" href="{{ url_for('home') }}">Home</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('resume') }}">Resume</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('projects') }}">Projects</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('gallery') }}">Gallery</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('videos') }}">Videos</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('blog') }}">Blog</a></div>
+                    </div>
+                </div>
+            </nav>
+            <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+                <div class="absolute inset-0">
+                    <div class="absolute inset-0 transition-opacity duration-1000"><img alt="Hero background 1"
+                            class="w-full h-full object-cover"
+                            src="{{ url_for('static', path='home_files/search-image.jpg') }}" /></div>
+                    <div class="absolute inset-0 transition-opacity duration-1000"><img alt="Hero background 2"
+                            class="w-full h-full object-cover"
+                            src="{{ url_for('static', path='home_files/search-image(1).jpg') }}" /></div>
+                    <div class="absolute inset-0 transition-opacity duration-1000 opacity-100"><img
+                            alt="Hero background 3" class="w-full h-full object-cover"
+                            src="{{ url_for('static', path='home_files/search-image(2).jpg') }}" /></div>
+                    <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-slate-950/90">
+                    </div>
+                </div>
+                <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex gap-2 z-20"><button
+                        aria-label="Go to slide 1"
+                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-500 hover:bg-slate-400"></button><button
+                        aria-label="Go to slide 2"
+                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-500 hover:bg-slate-400"></button><button
+                        aria-label="Go to slide 3"
+                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-cyan-400 w-8"></button>
+                </div>
+                <div class="relative z-10 max-w-6xl mx-auto px-8 py-32 text-center">
+                    <div class="mb-8 animate-fade-in">
+                        <div
+                            class="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6 backdrop-blur-sm">
+                            <span class="text-cyan-400 text-sm font-medium">Welcome to My Digital Garden</span>
+                        </div>
+                    </div>
+                    <h1 class="text-7xl md:text-8xl font-bold text-white mb-6 tracking-tight animate-fade-in-up">Xiao
+                        Ma's<span
+                            class="block mt-2 bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent">Digital
+                            Garden</span></h1>
+                    <p
+                        class="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-200">
+                        探索创意、技术与设计的交汇点。这里记录着我的项目、思考与成长历程。</p>
+                    <div class="flex flex-wrap gap-4 justify-center animate-fade-in-up delay-300"><a
+                            class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap hover:scale-105"
+                            data-discover="true" href="{{ url_for('resume') }}">View Resume</a><a
+                            class="px-8 py-4 bg-slate-800/80 backdrop-blur-sm text-white rounded-lg font-medium hover:bg-slate-700 border border-slate-700 transition-all duration-300 cursor-pointer whitespace-nowrap hover:scale-105"
+                            data-discover="true" href="{{ url_for('projects') }}">Browse Projects</a></div>
+                    <div class="mt-20 animate-bounce-gentle"><i class="ri-arrow-down-line text-slate-400 text-3xl"></i>
+                    </div>
+                </div>
+            </section>
+            <section class="py-20 bg-slate-900 border-y border-slate-800">
+                <div class="max-w-6xl mx-auto px-8">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 stats-section animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+                        <div class="text-center group cursor-default">
+                            <div
+                                class="text-4xl font-bold text-cyan-400 mb-2 transition-transform duration-300 group-hover:scale-110">
+                                5+</div>
+                            <div class="text-slate-400 text-sm">Years Experience</div>
+                        </div>
+                        <div class="text-center group cursor-default">
+                            <div
+                                class="text-4xl font-bold text-cyan-400 mb-2 transition-transform duration-300 group-hover:scale-110">
+                                20+</div>
+                            <div class="text-slate-400 text-sm">Projects Completed</div>
+                        </div>
+                        <div class="text-center group cursor-default">
+                            <div
+                                class="text-4xl font-bold text-cyan-400 mb-2 transition-transform duration-300 group-hover:scale-110">
+                                50+</div>
+                            <div class="text-slate-400 text-sm">Photography Works</div>
+                        </div>
+                        <div class="text-center group cursor-default">
+                            <div
+                                class="text-4xl font-bold text-cyan-400 mb-2 transition-transform duration-300 group-hover:scale-110">
+                                30+</div>
+                            <div class="text-slate-400 text-sm">Tech Articles</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <section class="py-24 bg-slate-950">
+                <div class="max-w-6xl mx-auto px-8">
+                    <div class="text-center mb-16 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+                        <h2 class="text-4xl font-bold text-white mb-4">Explore More</h2>
+                        <p class="text-slate-400 text-lg">从简历到作品，从摄影到文章，全面了解我</p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6"><a
+                            class="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer animate-on-scroll opacity-0 translate-y-8 hover:transform hover:-translate-y-2"
+                            data-discover="true" href="{{ url_for('resume') }}">
+                            <div class="p-8">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                                    <i class="ri-file-user-line text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">Resume &amp; Profile</h3>
+                                <p class="text-slate-400 mb-6 leading-relaxed">查看我的专业技能、工作经验和教育背景，了解我的职业发展轨迹</p>
+                                <div
+                                    class="flex items-center text-cyan-400 font-medium group-hover:gap-3 gap-2 transition-all duration-300">
+                                    <span>View Details</span><i class="ri-arrow-right-line"></i>
+                                </div>
+                            </div>
+                        </a><a
+                            class="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer animate-on-scroll opacity-0 translate-y-8 hover:transform hover:-translate-y-2"
+                            data-discover="true" href="{{ url_for('projects') }}">
+                            <div class="p-8">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                                    <i class="ri-code-box-line text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">Project Works</h3>
+                                <p class="text-slate-400 mb-6 leading-relaxed">精选项目展示，包括设计理念、技术栈和实现细节</p>
+                                <div
+                                    class="flex items-center text-cyan-400 font-medium group-hover:gap-3 gap-2 transition-all duration-300">
+                                    <span>View Details</span><i class="ri-arrow-right-line"></i>
+                                </div>
+                            </div>
+                        </a><a
+                            class="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer animate-on-scroll opacity-0 translate-y-8 hover:transform hover:-translate-y-2"
+                            data-discover="true" href="{{ url_for('gallery') }}">
+                            <div class="p-8">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                                    <i class="ri-camera-line text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">Photography Works</h3>
+                                <p class="text-slate-400 mb-6 leading-relaxed">用镜头捕捉生活中的美好瞬间，分享我的视觉故事</p>
+                                <div
+                                    class="flex items-center text-cyan-400 font-medium group-hover:gap-3 gap-2 transition-all duration-300">
+                                    <span>View Details</span><i class="ri-arrow-right-line"></i>
+                                </div>
+                            </div>
+                        </a><a
+                            class="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer animate-on-scroll opacity-0 translate-y-8 hover:transform hover:-translate-y-2"
+                            data-discover="true" href="{{ url_for('blog') }}">
+                            <div class="p-8">
+                                <div
+                                    class="w-14 h-14 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-300">
+                                    <i class="ri-article-line text-white text-2xl"></i>
+                                </div>
+                                <h3 class="text-2xl font-bold text-white mb-3">Blog Articles</h3>
+                                <p class="text-slate-400 mb-6 leading-relaxed">技术分享、思考感悟和学习笔记，记录成长的每一步</p>
+                                <div
+                                    class="flex items-center text-cyan-400 font-medium group-hover:gap-3 gap-2 transition-all duration-300">
+                                    <span>View Details</span><i class="ri-arrow-right-line"></i>
+                                </div>
+                            </div>
+                        </a></div>
+                </div>
+            </section>
+            <section class="py-24 bg-slate-900">
+                <div class="max-w-4xl mx-auto px-8 text-center">
+                    <div class="">
+                        <h2 class="text-4xl font-bold text-white mb-6">Let's Create Something Together</h2>
+                        <p class="text-xl text-slate-400 mb-10 leading-relaxed">If you're interested in my work or want
+                            to collaborate, feel free to reach out anytime</p>
+                        <div class="flex flex-wrap gap-4 justify-center"><a
+                                class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2 hover:scale-105"
+                                href="mailto:contact@example.com"><i class="ri-mail-line"></i><span>Send
+                                    Email</span></a><a
+                                class="px-8 py-4 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-700 border border-slate-700 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2 hover:scale-105"
+                                data-discover="true" href="{{ url_for('resume') }}"><i
+                                    class="ri-download-line"></i><span>Download Resume</span></a></div>
+                    </div>
+                </div>
+            </section>
+            <footer class="bg-slate-900 border-t border-slate-800" style="font-family: Poppins, sans-serif;">
+                <div class="max-w-6xl mx-auto px-8 py-12">
+                    <div class="grid md:grid-cols-4 gap-8 mb-8">
+                        <div class="md:col-span-2">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div
+                                    class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                                    <span class="text-white text-xl font-bold">M</span>
+                                </div><span class="text-white font-semibold text-lg">Xiao Ma's Digital Garden</span>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">A modern personal website showcasing
+                                creativity, technology, and design. Recording projects, thoughts, and growth journey.
+                            </p>
+                            <div class="flex gap-3"><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-github-fill text-lg"></i></a><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-twitter-x-fill text-lg"></i></a><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-linkedin-fill text-lg"></i></a><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-mail-fill text-lg"></i></a></div>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                            <ul class="space-y-2">
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('resume') }}">Resume</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('projects') }}">Projects</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('gallery') }}">Gallery</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('videos') }}">Videos</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Contact</h3>
+                            <ul class="space-y-2">
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        href="mailto:contact@example.com">contact@example.com</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('blog') }}">Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-slate-500 text-sm">© 2024 Xiao Ma's Digital Garden. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        (function () {
+            // Immediate removal
+            function kill() {
+                var wm = document.getElementById('watermark');
+                if (wm) wm.remove();
+
+                // Also kill by text content if ID changes
+                var divs = document.querySelectorAll('div');
+                divs.forEach(function (div) {
+                    if (div.innerText && (div.innerText.includes('本网站来自') || div.innerText.includes('Made with Readdy'))) {
+                        div.remove();
+                    }
+                });
+            }
+            kill();
+
+            // Persistent removal
+            var observer = new MutationObserver(function (mutations) {
+                kill();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // Periodic check just in case
+            setInterval(kill, 1000);
+        })();
+    </script>
+
+<script src="{{ url_for('static', path='js/main.js') }}"></script>
+</body>
+
+</html>

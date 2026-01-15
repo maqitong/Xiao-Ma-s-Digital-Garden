@@ -1,0 +1,43 @@
+{% extends "admin/layout.html" %}
+{% set active_page = "messages" %}
+
+{% block title %}Messages{% endblock %}
+
+{% block content %}
+<div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+    <div class="p-6 border-b border-gray-100 bg-gray-50">
+        <h3 class="font-bold text-gray-800 text-lg">Inbox</h3>
+    </div>
+    <div class="overflow-x-auto">
+        <table class="w-full text-left">
+            <thead class="bg-gray-50 text-gray-600 font-medium border-b">
+                <tr>
+                    <th class="px-6 py-4">Visitor</th>
+                    <th class="px-6 py-4">Message</th>
+                    <th class="px-6 py-4">Date</th>
+                </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-100">
+                {% for msg in messages %}
+                <tr class="hover:bg-gray-50 transition-colors">
+                    <td class="px-6 py-4 align-top">
+                        <div class="font-bold text-gray-800">{{ msg.visitor_name }}</div>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="text-sm text-gray-600 whitespace-pre-wrap">{{ msg.content }}</div>
+                    </td>
+                    <td class="px-6 py-4 align-top">
+                        <div class="text-xs text-gray-400">{{ msg.created_at.strftime('%Y-%m-%d %H:%M') if
+                            msg.created_at else '' }}</div>
+                    </td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" class="px-6 py-8 text-center text-gray-500">No messages yet.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}
