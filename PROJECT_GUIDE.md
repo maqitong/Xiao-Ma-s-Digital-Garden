@@ -48,40 +48,67 @@
 
 ---
 
-## 4. 部署到腾讯云 (Windows Server) 指南
+## 4. 部署到腾讯云 (Linux / 宝塔面板) 指南
 
-### 1. 服务器环境准备
-- **安装 Python**: 下载并安装 Python 3.10+，安装时勾选 "Add Python to PATH"。
-- **安装 Git**: 用于同步 GitHub 上的代码。
-
-### 2. 拉取代码与安装依赖
-打开服务器终端（PowerShell）：
-```powershell
+### 1. 基础环境安装
+在服务器 SSH 终端执行：
+```bash
+yum update -y
+yum install -y git python3-devel
 git clone <你的仓库地址>
-cd "Xiao Ma's Digital Garden 2"
-python -m venv venv
-.\venv\Scripts\activate
+cd Xiao-Ma-s-Digital-Garden
+python3 -m venv venv
+source venv/bin/activate
 pip install -r requirements.txt
+pip install gunicorn
 ```
 
-### 3. 配置防火墙（腾讯云控制台）
-- 登录腾讯云，进入“轻量应用服务器”详情页。
-- 点击“防火墙” -> “添加规则”。
-- 开放 **TCP:80** 端口（用于通过 IP 直接访问）或 **TCP:8000**。
+### 2. 配置 Systemd 永久运行
+创建服务文件：`vi /etc/systemd/system/xiaoma.service`
+内容如下：
+```ini
+[Unit]
+Description=Xiao Ma Digital Garden Service
+After=network.target
 
-### 4. 启动项目
-在服务器终端中运行：
-```powershell
-# 使用 80 端口启动（需要管理员权限）
-python -m uvicorn app.main:app --host 0.0.0.0 --port 80
+[Service]
+User=root
+WorkingDirectory=/root/Xiao-Ma-s-Digital-Garden
+Environment="PATH=/root/Xiao-Ma-s-Digital-Garden/venv/bin"
+ExecStart=/root/Xiao-Ma-s-Digital-Garden/venv/bin/gunicorn -w 4 -k uvicorn.workers.UvicornWorker app.main:app --bind 0.0.0.0:80
+
+[Install]
+WantedBy=multi-user.target
+```
+启动服务：
+```bash
+systemctl daemon-reload
+systemctl start xiaoma
+systemctl enable xiaoma
 ```
 
-### 5. 保持后台运行
-建议在 Windows 上使用 **NSSM** 工具将该启动命令注册为“Windows 服务”，这样即使你退出远程桌面或服务器重启，网站依然可以正常运行。
+### 3. 放行端口
+- **腾讯云后台**：防火墙放行 TCP:80。
+- **宝塔面板**：安全设置中放行 80 端口。
 
 ---
 
-## 5. 常用命令备忘
+## 5. 如何同步数据到服务器
+
+如果你在本地修改了 `seed_db.py` 或者想更新服务器上的初始数据：
+
+1. **更新代码**：在服务器执行 `git pull origin main`。
+2. **重置数据**：
+   ```bash
+   source venv/bin/activate
+   rm sql_app.db  # 注意：这会删除服务器上的现有数据
+   python seed_db.py
+   systemctl restart xiaoma
+   ```
+
+---
+
+## 6. 常用命令备忘
 
 - **本地启动服务**: `python -m uvicorn app.main:app --reload`
 - **重置数据库**: `python reset_db.py` (警告：这会清空所有数据)
