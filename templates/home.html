@@ -55,26 +55,27 @@
                 </div>
             </nav>
             <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-                <div class="absolute inset-0">
-                    <div class="absolute inset-0 transition-opacity duration-1000"><img alt="Hero background 1"
-                            class="w-full h-full object-cover"
+                <div class="absolute inset-0" id="hero-slider">
+                    <div class="absolute inset-0 transition-opacity duration-1000 opacity-100 slide-bg"><img
+                            alt="Hero background 1" class="w-full h-full object-cover"
                             src="{{ url_for('static', path='home_files/search-image.jpg') }}" /></div>
-                    <div class="absolute inset-0 transition-opacity duration-1000"><img alt="Hero background 2"
-                            class="w-full h-full object-cover"
+                    <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 slide-bg"><img
+                            alt="Hero background 2" class="w-full h-full object-cover"
                             src="{{ url_for('static', path='home_files/search-image(1).jpg') }}" /></div>
-                    <div class="absolute inset-0 transition-opacity duration-1000 opacity-100"><img
+                    <div class="absolute inset-0 transition-opacity duration-1000 opacity-0 slide-bg"><img
                             alt="Hero background 3" class="w-full h-full object-cover"
                             src="{{ url_for('static', path='home_files/search-image(2).jpg') }}" /></div>
                     <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/70 to-slate-950/90">
                     </div>
                 </div>
-                <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex gap-2 z-20"><button
-                        aria-label="Go to slide 1"
-                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-500 hover:bg-slate-400"></button><button
-                        aria-label="Go to slide 2"
-                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-500 hover:bg-slate-400"></button><button
-                        aria-label="Go to slide 3"
-                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-cyan-400 w-8"></button>
+                <div class="absolute bottom-32 left-1/2 transform -translate-x-1/2 flex gap-2 z-20"
+                    id="slider-indicators">
+                    <button aria-label="Go to slide 1" onclick="goToSlide(0)"
+                        class="w-8 h-2 rounded-full transition-all duration-300 cursor-pointer bg-cyan-400 slide-dot"></button>
+                    <button aria-label="Go to slide 2" onclick="goToSlide(1)"
+                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-500 hover:bg-slate-400 slide-dot"></button>
+                    <button aria-label="Go to slide 3" onclick="goToSlide(2)"
+                        class="w-2 h-2 rounded-full transition-all duration-300 cursor-pointer bg-slate-500 hover:bg-slate-400 slide-dot"></button>
                 </div>
                 <div class="relative z-10 max-w-6xl mx-auto px-8 py-32 text-center">
                     <div class="mb-8 animate-fade-in">
@@ -101,7 +102,8 @@
             </section>
             <section class="py-20 bg-slate-900 border-y border-slate-800">
                 <div class="max-w-6xl mx-auto px-8">
-                    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 stats-section animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+                    <div
+                        class="grid grid-cols-2 md:grid-cols-4 gap-8 stats-section animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
                         <div class="text-center group cursor-default">
                             <div
                                 class="text-4xl font-bold text-cyan-400 mb-2 transition-transform duration-300 group-hover:scale-110">
@@ -131,9 +133,10 @@
             </section>
             <section class="py-24 bg-slate-950">
                 <div class="max-w-6xl mx-auto px-8">
-                    <div class="text-center mb-16 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+                    <div
+                        class="text-center mb-16 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
                         <h2 class="text-4xl font-bold text-white mb-4">Explore More</h2>
-                        <p class="text-slate-400 text-lg">从简历到作品，从摄影到文章，全面了解我</p>
+                        <p class="text-slate-400 text-lg">从简历到作品，从工作到生活，全面了解我</p>
                     </div>
                     <div class="grid md:grid-cols-2 gap-6"><a
                             class="group relative bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-300 cursor-pointer animate-on-scroll opacity-0 translate-y-8 hover:transform hover:-translate-y-2"
@@ -202,11 +205,10 @@
                 <div class="max-w-4xl mx-auto px-8 text-center">
                     <div class="">
                         <h2 class="text-4xl font-bold text-white mb-6">Let's Create Something Together</h2>
-                        <p class="text-xl text-slate-400 mb-10 leading-relaxed">If you're interested in my work or want
-                            to collaborate, feel free to reach out anytime</p>
+                        <p class="text-xl text-slate-400 mb-10 leading-relaxed">如果您对我的工作感兴趣或想要合作，请随时联系我</p>
                         <div class="flex flex-wrap gap-4 justify-center"><a
                                 class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2 hover:scale-105"
-                                href="mailto:contact@example.com"><i class="ri-mail-line"></i><span>Send
+                                href="mailto:mqtfire@qq.com"><i class="ri-mail-line"></i><span>Send
                                     Email</span></a><a
                                 class="px-8 py-4 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-700 border border-slate-700 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2 hover:scale-105"
                                 data-discover="true" href="{{ url_for('resume') }}"><i
@@ -224,8 +226,7 @@
                                     <span class="text-white text-xl font-bold">M</span>
                                 </div><span class="text-white font-semibold text-lg">Xiao Ma's Digital Garden</span>
                             </div>
-                            <p class="text-slate-400 text-sm leading-relaxed mb-4">A modern personal website showcasing
-                                creativity, technology, and design. Recording projects, thoughts, and growth journey.
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">一个展示创意、技术和设计的现代个人网站。记录项目、想法和成长历程。
                             </p>
                             <div class="flex gap-3"><a
                                     class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
@@ -254,7 +255,7 @@
                             <h3 class="text-white font-semibold mb-4">Contact</h3>
                             <ul class="space-y-2">
                                 <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
-                                        href="mailto:contact@example.com">contact@example.com</a></li>
+                                        href="mailto:mqtfire@qq.com">mqtfire@qq.com</a></li>
                                 <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
                                         data-discover="true" href="{{ url_for('blog') }}">Blog</a></li>
                             </ul>
@@ -263,12 +264,66 @@
                     <div
                         class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
                         <p class="text-slate-500 text-sm">© 2024 Xiao Ma's Digital Garden. All rights reserved.</p>
+                        <a href="/admin"
+                            class="text-slate-600 text-xs hover:text-cyan-400 transition-colors duration-300">Admin
+                            Login</a>
                     </div>
                 </div>
             </footer>
         </div>
     </div>
 
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide-bg');
+        const dots = document.querySelectorAll('.slide-dot');
+        const totalSlides = slides.length;
+        let slideInterval;
+
+        function updateSlider() {
+            // Update Backgrounds
+            slides.forEach((slide, index) => {
+                if (index === currentSlide) {
+                    slide.classList.remove('opacity-0');
+                    slide.classList.add('opacity-100');
+                } else {
+                    slide.classList.remove('opacity-100');
+                    slide.classList.add('opacity-0');
+                }
+            });
+
+            // Update Dots
+            dots.forEach((dot, index) => {
+                if (index === currentSlide) {
+                    dot.classList.remove('bg-slate-500', 'w-2');
+                    dot.classList.add('bg-cyan-400', 'w-8');
+                } else {
+                    dot.classList.remove('bg-cyan-400', 'w-8');
+                    dot.classList.add('bg-slate-500', 'w-2');
+                }
+            });
+        }
+
+        function goToSlide(index) {
+            currentSlide = index;
+            updateSlider();
+            resetInterval();
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        // Initialize
+        updateSlider();
+        resetInterval();
+    </script>
     <script>
         (function () {
             // Immediate removal
@@ -297,7 +352,7 @@
         })();
     </script>
 
-<script src="{{ url_for('static', path='js/main.js') }}"></script>
+    <script src="{{ url_for('static', path='js/main.js') }}"></script>
 </body>
 
 </html>

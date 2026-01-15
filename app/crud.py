@@ -31,16 +31,18 @@ def get_messages(db: Session):
 def get_profile(db: Session):
     return db.query(models.Profile).first()
 
-def create_or_update_profile(db: Session, name, role, bio, email):
+def create_or_update_profile(db: Session, name, role, bio, email, resume_url=None):
     profile = db.query(models.Profile).first()
     if not profile:
-        profile = models.Profile(name=name, role=role, bio=bio, email=email)
+        profile = models.Profile(name=name, role=role, bio=bio, email=email, resume_url=resume_url)
         db.add(profile)
     else:
         profile.name = name
         profile.role = role
         profile.bio = bio
         profile.email = email
+        if resume_url:
+            profile.resume_url = resume_url
     db.commit()
     db.refresh(profile)
     return profile
@@ -91,4 +93,54 @@ def delete_skill(db: Session, skill_id: int):
     skill = db.query(models.Skill).filter(models.Skill.id == skill_id).first()
     if skill:
         db.delete(skill)
+        db.commit()
+
+# --- New CRUD for Gallery, Videos, Blog ---
+
+# Gallery
+def get_gallery_items(db: Session):
+    return db.query(models.GalleryItem).all()
+
+def create_gallery_item(db: Session, title, description, image_url, category):
+    item = models.GalleryItem(title=title, description=description, image_url=image_url, category=category)
+    db.add(item)
+    db.commit()
+    return item
+
+def delete_gallery_item(db: Session, item_id: int):
+    item = db.query(models.GalleryItem).filter(models.GalleryItem.id == item_id).first()
+    if item:
+        db.delete(item)
+        db.commit()
+
+# Videos
+def get_video_items(db: Session):
+    return db.query(models.VideoItem).all()
+
+def create_video_item(db: Session, title, description, video_url, thumbnail_url, platform):
+    item = models.VideoItem(title=title, description=description, video_url=video_url, thumbnail_url=thumbnail_url, platform=platform)
+    db.add(item)
+    db.commit()
+    return item
+
+def delete_video_item(db: Session, item_id: int):
+    item = db.query(models.VideoItem).filter(models.VideoItem.id == item_id).first()
+    if item:
+        db.delete(item)
+        db.commit()
+
+# Blog
+def get_blog_posts(db: Session):
+    return db.query(models.BlogPost).order_by(models.BlogPost.id.desc()).all()
+
+def create_blog_post(db: Session, title, excerpt, content, cover_image, author, date, tags):
+    post = models.BlogPost(title=title, excerpt=excerpt, content=content, cover_image=cover_image, author=author, date=date, tags=tags)
+    db.add(post)
+    db.commit()
+    return post
+
+def delete_blog_post(db: Session, post_id: int):
+    post = db.query(models.BlogPost).filter(models.BlogPost.id == post_id).first()
+    if post:
+        db.delete(post)
         db.commit()

@@ -27,8 +27,17 @@ def get_db():
 
 @app.get("/", response_class=HTMLResponse, name="home")
 async def read_root(request: Request, db: Session = Depends(get_db)):
+    profile = crud.get_profile(db)
+    skills = crud.get_skills(db)
+    experiences = crud.get_experiences(db)
     projects = crud.get_projects(db)
-    return templates.TemplateResponse("home.html", {"request": request, "projects": projects})
+    return templates.TemplateResponse("home.html", {
+        "request": request, 
+        "profile": profile, 
+        "skills": skills,
+        "experiences": experiences,
+        "projects": projects
+    })
 
 @app.get("/resume", response_class=HTMLResponse, name="resume")
 async def read_resume(request: Request, db: Session = Depends(get_db)):
@@ -50,16 +59,19 @@ async def read_projects(request: Request, db: Session = Depends(get_db)):
     return templates.TemplateResponse("projects.html", {"request": request, "projects": projects})
 
 @app.get("/gallery", response_class=HTMLResponse, name="gallery")
-async def read_gallery(request: Request):
-    return templates.TemplateResponse("gallery.html", {"request": request})
+async def read_gallery(request: Request, db: Session = Depends(get_db)):
+    gallery_items = crud.get_gallery_items(db)
+    return templates.TemplateResponse("gallery.html", {"request": request, "gallery_items": gallery_items})
 
 @app.get("/videos", response_class=HTMLResponse, name="videos")
-async def read_videos(request: Request):
-    return templates.TemplateResponse("videos.html", {"request": request})
+async def read_videos(request: Request, db: Session = Depends(get_db)):
+    video_items = crud.get_video_items(db)
+    return templates.TemplateResponse("videos.html", {"request": request, "video_items": video_items})
 
 @app.get("/blog", response_class=HTMLResponse, name="blog")
-async def read_blog(request: Request):
-    return templates.TemplateResponse("blog.html", {"request": request})
+async def read_blog(request: Request, db: Session = Depends(get_db)):
+    blog_posts = crud.get_blog_posts(db)
+    return templates.TemplateResponse("blog.html", {"request": request, "blog_posts": blog_posts})
 
 @app.post("/api/message")
 async def create_message(

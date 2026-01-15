@@ -1,65 +1,191 @@
 <!DOCTYPE html>
 
 <!-- saved from url=(0079)https://readdy.link/preview/69b7b19d-d7f2-4f01-bc23-34addb3f417a/5503083/travel -->
-<html lang="zh-CN"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Xiao Ma's Digital Garden - Personal Portfolio &amp; Resume</title>
-<meta content="Xiao Ma's Digital Garden - A modern personal website showcasing resume, projects, photography, videos and blog articles" name="description"/>
-<meta content="personal portfolio,resume,projects,photography,blog,digital garden" name="keywords"/>
-<link href="https://fonts.googleapis.com/" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
-<link href="{{ url_for('static', path='projects_files/css2.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', path='projects_files/all.min.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', path='projects_files/remixicon.min.css') }}" rel="stylesheet"/>
-<script crossorigin="" src="{{ url_for('static', path='projects_files/index-DzpddGlb.js') }}" type="module"></script>
-<link crossorigin="" href="{{ url_for('static', path='projects_files/index-XAWxHLPb.css') }}" rel="stylesheet"/>
-<link href="{{ url_for('static', path='projects_files/css2(1).css') }}" rel="stylesheet"/><script async="" src="{{ url_for('static', path='projects_files/array.full.min.js') }}"></script></head>
+<html lang="zh-CN">
+
+<head>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Xiao Ma's Digital Garden - Personal Portfolio &amp; Resume</title>
+    <meta
+        content="Xiao Ma's Digital Garden - A modern personal website showcasing resume, projects, photography, videos and blog articles"
+        name="description" />
+    <meta content="personal portfolio,resume,projects,photography,blog,digital garden" name="keywords" />
+    <link href="https://fonts.googleapis.com/" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect" />
+    <link href="{{ url_for('static', path='projects_files/css2.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='projects_files/all.min.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='projects_files/remixicon.min.css') }}" rel="stylesheet" />
+    <script crossorigin="" src="{{ url_for('static', path='projects_files/index-DzpddGlb.js') }}"
+        type="module"></script>
+    <link crossorigin="" href="{{ url_for('static', path='projects_files/index-XAWxHLPb.css') }}" rel="stylesheet" />
+    <link href="{{ url_for('static', path='projects_files/css2(1).css') }}" rel="stylesheet" />
+    <script async="" src="{{ url_for('static', path='projects_files/array.full.min.js') }}"></script>
+</head>
+
 <body>
-<div id="root"><div class="min-h-screen bg-slate-950" style="font-family: Poppins, sans-serif;"><nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent" style="font-family: Poppins, sans-serif;"><div class="max-w-7xl mx-auto px-8"><div class="flex items-center justify-between h-20"><a class="flex items-center gap-3 group cursor-pointer" data-discover="true" href="{{ url_for('home') }}"><div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all duration-300 group-hover:scale-105"><span class="text-white text-2xl font-bold">M</span></div><span class="text-white font-semibold text-lg tracking-wide hidden md:block">Xiao Ma's Digital Garden</span></a><div class="flex items-center gap-1"><a class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800" data-discover="true" href="{{ url_for('home') }}">Home</a><a class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800" data-discover="true" href="{{ url_for('resume') }}">Resume</a><a class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-cyan-400 bg-cyan-500/10" data-discover="true" href="{{ url_for('projects') }}">Projects</a><a class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800" data-discover="true" href="{{ url_for('gallery') }}">Gallery</a><a class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800" data-discover="true" href="{{ url_for('videos') }}">Videos</a><a class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800" data-discover="true" href="{{ url_for('blog') }}">Blog</a></div></div></div></nav><section class="pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900"><div class="max-w-6xl mx-auto px-8 text-center"><div class="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6 animate-fade-in"><span class="text-cyan-400 text-sm font-medium">My Works</span></div><h1 class="text-5xl font-bold text-white mb-6 animate-fade-in-up">Project Works</h1><p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-200">精选项目展示，涵盖 Web 开发、移动应用、UI 设计等多个领域</p></div></section><section class="py-20 bg-slate-950"><div class="max-w-6xl mx-auto px-8"><div class="grid md:grid-cols-2 gap-8">
-    {% for project in projects %}
-    <a class="group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer animate-on-scroll hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-500/10 opacity-100 translate-y-0 block" href="{{ project.link }}" target="_blank">
-<div class="relative h-64 overflow-hidden">
-<img alt="{{ project.title }}" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="{{ project.image_url }}"/>
-<div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60"></div>
-</div>
-<div class="p-6">
-<div class="flex items-center justify-between mb-4">
-<span class="">{{ project.category }}</span>
-</div>
-<h3 class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">{{ project.title }}</h3>
-<p class="text-slate-400 mb-4 leading-relaxed text-sm">{{ project.description }}</p>
-</div>
-</a>
-    {% endfor %}
-    </div></div></section><section class="py-20 bg-slate-900"><div class="max-w-4xl mx-auto px-8 text-center animate-on-scroll opacity-0 translate-y-8 transition-all duration-700"><h2 class="text-4xl font-bold text-white mb-6">Interested in Collaboration?</h2><p class="text-xl text-slate-400 mb-10 leading-relaxed">如果您对我的项目感兴趣，或者想要讨论合作机会，欢迎随时联系我</p><a class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap hover:scale-105" href="mailto:contact@example.com"><i class="ri-mail-line"></i><span>Get in Touch</span></a></div></section><footer class="bg-slate-900 border-t border-slate-800" style="font-family: Poppins, sans-serif;"><div class="max-w-6xl mx-auto px-8 py-12"><div class="grid md:grid-cols-4 gap-8 mb-8"><div class="md:col-span-2"><div class="flex items-center gap-3 mb-4"><div class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20"><span class="text-white text-xl font-bold">M</span></div><span class="text-white font-semibold text-lg">Xiao Ma's Digital Garden</span></div><p class="text-slate-400 text-sm leading-relaxed mb-4">A modern personal website showcasing creativity, technology, and design. Recording projects, thoughts, and growth journey.</p><div class="flex gap-3"><a class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer" href="{{ url_for('home') }}"><i class="ri-github-fill text-lg"></i></a><a class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer" href="{{ url_for('home') }}"><i class="ri-twitter-x-fill text-lg"></i></a><a class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer" href="{{ url_for('home') }}"><i class="ri-linkedin-fill text-lg"></i></a><a class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer" href="{{ url_for('home') }}"><i class="ri-mail-fill text-lg"></i></a></div></div><div><h3 class="text-white font-semibold mb-4">Quick Links</h3><ul class="space-y-2"><li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer" data-discover="true" href="{{ url_for('resume') }}">Resume</a></li><li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer" data-discover="true" href="{{ url_for('projects') }}">Projects</a></li><li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer" data-discover="true" href="{{ url_for('gallery') }}">Gallery</a></li><li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer" data-discover="true" href="{{ url_for('videos') }}">Videos</a></li></ul></div><div><h3 class="text-white font-semibold mb-4">Contact</h3><ul class="space-y-2"><li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer" href="mailto:contact@example.com">contact@example.com</a></li><li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer" data-discover="true" href="{{ url_for('blog') }}">Blog</a></li></ul></div></div><div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4"><p class="text-slate-500 text-sm">© 2024 Xiao Ma's Digital Garden. All rights reserved.</p></div></div></footer></div></div>
+    <div id="root">
+        <div class="min-h-screen bg-slate-950" style="font-family: Poppins, sans-serif;">
+            <nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-transparent"
+                style="font-family: Poppins, sans-serif;">
+                <div class="max-w-7xl mx-auto px-8">
+                    <div class="flex items-center justify-between h-20"><a
+                            class="flex items-center gap-3 group cursor-pointer" data-discover="true"
+                            href="{{ url_for('home') }}">
+                            <div
+                                class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-xl flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:shadow-cyan-500/40 transition-all duration-300 group-hover:scale-105">
+                                <span class="text-white text-2xl font-bold">M</span>
+                            </div><span class="text-white font-semibold text-lg tracking-wide hidden md:block">Xiao Ma's
+                                Digital
+                                Garden</span>
+                        </a>
+                        <div class="flex items-center gap-1"><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('home') }}">Home</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('resume') }}">Resume</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-cyan-400 bg-cyan-500/10"
+                                data-discover="true" href="{{ url_for('projects') }}">Projects</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('gallery') }}">Gallery</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('videos') }}">Videos</a><a
+                                class="px-4 py-2 rounded-lg font-medium transition-all duration-300 cursor-pointer whitespace-nowrap text-slate-300 hover:text-white hover:bg-slate-800"
+                                data-discover="true" href="{{ url_for('blog') }}">Blog</a></div>
+                    </div>
+                </div>
+            </nav>
+            <section class="pt-32 pb-20 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+                <div class="max-w-6xl mx-auto px-8 text-center">
+                    <div
+                        class="inline-block px-4 py-2 bg-cyan-500/10 border border-cyan-500/20 rounded-full mb-6 animate-fade-in">
+                        <span class="text-cyan-400 text-sm font-medium">My Works</span>
+                    </div>
+                    <h1 class="text-5xl font-bold text-white mb-6 animate-fade-in-up">Project Works</h1>
+                    <p class="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed animate-fade-in-up delay-200">
+                        精选项目展示，涵盖 Web 开发、移动应用、UI 设计等多个领域</p>
+                </div>
+            </section>
+            <section class="py-20 bg-slate-950">
+                <div class="max-w-6xl mx-auto px-8">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        {% for project in projects %}
+                        <a class="group bg-slate-900 rounded-2xl overflow-hidden border border-slate-800 hover:border-cyan-500/50 transition-all duration-500 cursor-pointer animate-on-scroll hover:transform hover:-translate-y-2 hover:shadow-xl hover:shadow-cyan-500/10 opacity-100 translate-y-0 block"
+                            href="{{ project.link }}" target="_blank">
+                            <div class="relative h-64 overflow-hidden">
+                                <img alt="{{ project.title }}"
+                                    class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                    src="{{ project.image_url }}" />
+                                <div
+                                    class="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-60">
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center justify-between mb-4">
+                                    <span class="">{{ project.category }}</span>
+                                </div>
+                                <h3
+                                    class="text-2xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors duration-300">
+                                    {{ project.title }}</h3>
+                                <p class="text-slate-400 mb-4 leading-relaxed text-sm">{{ project.description }}</p>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+            <section class="py-20 bg-slate-900">
+                <div
+                    class="max-w-4xl mx-auto px-8 text-center animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
+                    <h2 class="text-4xl font-bold text-white mb-6">Interested in Collaboration?</h2>
+                    <p class="text-xl text-slate-400 mb-10 leading-relaxed">如果您对我的项目感兴趣，或者想要讨论合作机会，欢迎随时联系我</p><a
+                        class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap hover:scale-105"
+                        href="mailto:mqtfire@qq.com"><i class="ri-mail-line"></i><span>Get in Touch</span></a>
+                </div>
+            </section>
+            <footer class="bg-slate-900 border-t border-slate-800" style="font-family: Poppins, sans-serif;">
+                <div class="max-w-6xl mx-auto px-8 py-12">
+                    <div class="grid md:grid-cols-4 gap-8 mb-8">
+                        <div class="md:col-span-2">
+                            <div class="flex items-center gap-3 mb-4">
+                                <div
+                                    class="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-lg flex items-center justify-center shadow-lg shadow-cyan-500/20">
+                                    <span class="text-white text-xl font-bold">M</span>
+                                </div><span class="text-white font-semibold text-lg">Xiao Ma's Digital Garden</span>
+                            </div>
+                            <p class="text-slate-400 text-sm leading-relaxed mb-4">一个展示创意、技术和设计的现代个人网站。记录项目、想法和成长历程。
+                            </p>
+                            <div class="flex gap-3"><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-github-fill text-lg"></i></a><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-twitter-x-fill text-lg"></i></a><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-linkedin-fill text-lg"></i></a><a
+                                    class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
+                                    href="{{ url_for('home') }}"><i class="ri-mail-fill text-lg"></i></a></div>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Quick Links</h3>
+                            <ul class="space-y-2">
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('resume') }}">Resume</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('projects') }}">Projects</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('gallery') }}">Gallery</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('videos') }}">Videos</a></li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h3 class="text-white font-semibold mb-4">Contact</h3>
+                            <ul class="space-y-2">
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        href="mailto:mqtfire@qq.com">mqtfire@qq.com</a></li>
+                                <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
+                                        data-discover="true" href="{{ url_for('blog') }}">Blog</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div
+                        class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+                        <p class="text-slate-500 text-sm">© 2024 Xiao Ma's Digital Garden. All rights reserved.</p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
 
     <script>
-    (function() {
-        // Immediate removal
-        function kill() {
-            var wm = document.getElementById('watermark');
-            if (wm) wm.remove();
-            
-            // Also kill by text content if ID changes
-            var divs = document.querySelectorAll('div');
-            divs.forEach(function(div) {
-                if (div.innerText && (div.innerText.includes('本网站来自') || div.innerText.includes('Made with Readdy'))) {
-                    div.remove();
-                }
-            });
-        }
-        kill();
-        
-        // Persistent removal
-        var observer = new MutationObserver(function(mutations) {
+        (function () {
+            // Immediate removal
+            function kill() {
+                var wm = document.getElementById('watermark');
+                if (wm) wm.remove();
+
+                // Also kill by text content if ID changes
+                var divs = document.querySelectorAll('div');
+                divs.forEach(function (div) {
+                    if (div.innerText && (div.innerText.includes('本网站来自') || div.innerText.includes('Made with Readdy'))) {
+                        div.remove();
+                    }
+                });
+            }
             kill();
-        });
-        observer.observe(document.body, { childList: true, subtree: true });
-        
-        // Periodic check just in case
-        setInterval(kill, 1000);
-    })();
+
+            // Persistent removal
+            var observer = new MutationObserver(function (mutations) {
+                kill();
+            });
+            observer.observe(document.body, { childList: true, subtree: true });
+
+            // Periodic check just in case
+            setInterval(kill, 1000);
+        })();
     </script>
-    
-<script src="{{ url_for('static', path='js/main.js') }}"></script>
-</body></html>
+
+    <script src="{{ url_for('static', path='js/main.js') }}"></script>
+</body>
+
+</html>

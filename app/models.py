@@ -30,10 +30,11 @@ class Profile(Base):
     name = Column(String, default="Xiao Ma")
     role = Column(String, default="Full Stack Developer")
     bio = Column(Text, default="A passionate developer...")
-    email = Column(String, default="contact@example.com")
+    email = Column(String, default="mqtfire@qq.com")
     phone = Column(String, nullable=True)
     github = Column(String, nullable=True)
     linkedin = Column(String, nullable=True)
+    resume_url = Column(String, nullable=True)
 
 class Experience(Base):
     __tablename__ = "experiences"
@@ -58,3 +59,35 @@ class Skill(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String)
     category = Column(String, default="General") # Frontend, Backend, Tools
+
+# New Models for Gallery, Videos, Blog
+class GalleryItem(Base):
+    __tablename__ = "gallery_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    description = Column(Text, nullable=True)
+    image_url = Column(String)
+    category = Column(String, default="Photography")
+
+class VideoItem(Base):
+    __tablename__ = "video_items"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    description = Column(Text, nullable=True)
+    video_url = Column(String) # Link to video
+    thumbnail_url = Column(String)
+    platform = Column(String, default="YouTube") # YouTube, Bilibili, etc.
+
+class BlogPost(Base):
+    __tablename__ = "blog_posts"
+
+    id = Column(Integer, primary_key=True, index=True)
+    title = Column(String, index=True)
+    excerpt = Column(Text) # Short summary
+    content = Column(Text) # Full content (HTML or Markdown)
+    cover_image = Column(String, nullable=True)
+    author = Column(String, default="Xiao Ma")
+    date = Column(String) # Simple string date for now, or DateTime
+    tags = Column(String, nullable=True)

@@ -58,7 +58,7 @@
                 <div class="max-w-6xl mx-auto px-8">
                     <div class="grid md:grid-cols-2 gap-12 items-center">
                         <div class="animate-on-scroll transition-all duration-700 opacity-100 translate-y-0">
-                            <div class="relative">
+                            <div class="relative max-w-sm mx-auto">
                                 <div
                                     class="absolute inset-0 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl blur-2xl opacity-20">
                                 </div>
@@ -75,13 +75,13 @@
                             </div>
                             <h1 class="text-5xl font-bold text-white mb-6">{{ profile.name }}</h1>
                             <p class="text-xl text-slate-400 mb-8 leading-relaxed">{{ profile.role }}</p>
-                            <p class="text-slate-400 mb-8 leading-relaxed">
-                                热爱技术与设计，专注于创造优雅的用户体验。拥有5年以上的开发经验，擅长前端开发、UI设计和产品思维。</p>
+                            <p class="text-slate-400 mb-8 leading-relaxed">{{ profile.bio }}</p>
                             <div class="flex flex-wrap gap-4"><a
                                     class="px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
-                                    href="{{ url_for('home') }}"><i class="ri-download-line"></i><span>下载简历</span></a><a
+                                    href="{{ profile.resume_url if profile.resume_url else '#' }}" target="_blank"><i
+                                        class="ri-download-line"></i><span>下载简历</span></a><a
                                     class="px-6 py-3 bg-slate-800 text-white rounded-lg font-medium hover:bg-slate-700 border border-slate-700 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
-                                    href="mailto:{{ profile.email }}"><i class="ri-mail-line"></i><span>联系我</span></a>
+                                    href="mailto:mqtfire@qq.com"><i class="ri-mail-line"></i><span>联系我</span></a>
                             </div>
                         </div>
                     </div>
@@ -177,52 +177,90 @@
                     <p class="text-slate-400 text-lg">完整的工作经历与教育背景</p>
                 </div>
                 <div class="animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
-                    <div class="bg-slate-950 rounded-2xl p-12 border border-slate-800">
-                        <div
-                            class="aspect-[8.5/11] bg-white rounded-lg shadow-2xl flex items-center justify-center relative overflow-hidden">
-                            <div class="absolute inset-0 bg-gradient-to-br from-slate-100 to-white p-12">
-                                <div class="text-center mb-8">
-                                    <h3 class="text-4xl font-bold text-slate-900 mb-2">{{ profile.name }}</h3>
-                                    <p class="text-slate-600 text-lg">{{ profile.role }}</p>
-                                </div>
-                                <div class="space-y-6">
-                                    <div>
-                                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center gap-2"><i
-                                                class="ri-briefcase-line text-cyan-500"></i>工作经验</h4>
-                                        <div class="space-y-3 text-sm text-slate-700">
-                                            {% for exp in experiences %}
-                                            <div class="mb-6 border-l-2 border-slate-200 pl-4 ml-2">
-                                                <h5 class="text-lg font-bold text-slate-800">{{ exp.title }}</h5>
-                                                <div class="text-sm text-cyan-600 mb-1">{{ exp.company }} | {{
-                                                    exp.duration }}</div>
-                                                <p class="text-slate-600 leading-relaxed">{{ exp.description }}</p>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <h4 class="text-xl font-bold text-slate-900 mb-3 flex items-center gap-2"><i
-                                                class="ri-graduation-cap-line text-cyan-500"></i>教育背景</h4>
-                                        <div class="text-sm text-slate-700">
-                                            {% for edu in educations %}
-                                            <div class="mb-6 border-l-2 border-slate-200 pl-4 ml-2">
-                                                <h5 class="text-lg font-bold text-slate-800">{{ edu.school }}</h5>
-                                                <div class="text-sm text-cyan-600 mb-1">{{ edu.degree }} | {{
-                                                    edu.duration }}</div>
-                                            </div>
-                                            {% endfor %}
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="bg-slate-950 rounded-2xl p-6 border border-slate-800 relative max-w-4xl mx-auto">
+                        <!-- Resume Container -->
+                        <div class="relative group">
+                            <!-- Image Display -->
+                            <div class="relative overflow-hidden rounded-lg shadow-2xl" id="resume-container">
+                                <img id="resume-image" src="{{ url_for('static', path='resumes/resume_page_1.png') }}"
+                                    alt="Resume Page"
+                                    class="w-full h-auto transition-opacity duration-300 relative z-10">
+
+                                <!-- Navigation Buttons (Hover) -->
+                                <button onclick="prevPage()"
+                                    class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 cursor-pointer">
+                                    <i class="ri-arrow-left-s-line text-2xl"></i>
+                                </button>
+                                <button onclick="nextPage()"
+                                    class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 z-20 cursor-pointer">
+                                    <i class="ri-arrow-right-s-line text-2xl"></i>
+                                </button>
                             </div>
+
+                            <!-- Page Indicator -->
                             <div
-                                class="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent flex items-end justify-center pb-12">
-                                <a class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-lg font-medium hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
-                                    href="{{ url_for('home') }}"><i class="ri-download-line"></i><span>下载完整简历</span></a>
+                                class="absolute bottom-4 left-1/2 -translate-x-1/2 bg-black/50 px-4 py-1 rounded-full text-white text-sm z-20">
+                                <span id="current-page">1</span> / 2
                             </div>
+                        </div>
+
+                        <!-- Floating Download Button -->
+                        <div class="fixed bottom-8 right-8 z-50">
+                            <a class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white rounded-full font-medium shadow-lg shadow-cyan-500/50 hover:scale-105 transition-all duration-300 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
+                                href="{{ profile.resume_url if profile.resume_url else '#' }}" target="_blank">
+                                <i class="ri-download-line text-xl"></i>
+                                <span>下载完整简历</span>
+                            </a>
                         </div>
                     </div>
                 </div>
+
+                <script>
+                    const resumeImages = [
+                        "{{ url_for('static', path='resumes/resume_page_1.png') }}",
+                        "{{ url_for('static', path='resumes/resume_page_2.png') }}"
+                    ];
+                    let currentPage = 0;
+
+                    function updateResume() {
+                        const img = document.getElementById('resume-image');
+                        const indicator = document.getElementById('current-page');
+
+                        img.style.opacity = '0';
+                        setTimeout(() => {
+                            img.src = resumeImages[currentPage];
+                            img.onload = () => {
+                                img.style.opacity = '1';
+                            };
+                        }, 300);
+
+                        indicator.textContent = currentPage + 1;
+                    }
+
+                    function nextPage() {
+                        if (currentPage < resumeImages.length - 1) {
+                            currentPage++;
+                            updateResume();
+                        }
+                    }
+
+                    function prevPage() {
+                        if (currentPage > 0) {
+                            currentPage--;
+                            updateResume();
+                        }
+                    }
+
+                    // Add mouse wheel support
+                    document.getElementById('resume-container').addEventListener('wheel', function (e) {
+                        e.preventDefault();
+                        if (e.deltaY > 0) {
+                            nextPage();
+                        } else {
+                            prevPage();
+                        }
+                    }, { passive: false });
+                </script>
             </div>
         </section>
         <section class="py-20 bg-slate-950">
@@ -232,69 +270,36 @@
                     <p class="text-slate-400 text-lg">我的职业发展轨迹</p>
                 </div>
                 <div class="space-y-8">
-                    <div
-                        class="relative pl-8 border-l-2 border-cyan-500 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700">
-                        <div class="absolute -left-2 top-0 w-4 h-4 bg-cyan-500 rounded-full"></div>
+                    {% for exp in experiences %}
+                    <div class="relative pl-8 border-l-2 {% if loop.first %}border-cyan-500{% else %}border-slate-700{% endif %} animate-on-scroll opacity-0 translate-y-8 transition-all duration-700"
+                        style="transition-delay: {{ loop.index0 * 100 }}ms">
+                        <div
+                            class="absolute -left-2 top-0 w-4 h-4 {% if loop.first %}bg-cyan-500{% else %}bg-slate-700{% endif %} rounded-full">
+                        </div>
                         <div class="bg-slate-900 rounded-xl p-6 border border-slate-800">
                             <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-white">高级前端工程师</h3><span
-                                    class="text-cyan-400 text-sm font-medium">2021 - 至今</span>
+                                <h3 class="text-xl font-bold text-white">{{ exp.title }}</h3><span
+                                    class="{% if loop.first %}text-cyan-400{% else %}text-slate-400{% endif %} text-sm font-medium">{{
+                                    exp.duration }}</span>
                             </div>
-                            <p class="text-slate-400 mb-3">某科技公司</p>
+                            <p class="text-slate-400 mb-3">{{ exp.company }}</p>
                             <ul class="text-slate-400 text-sm space-y-2">
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-cyan-500 mt-1"></i><span>负责公司核心产品的前端架构设计与开发</span>
+                                {% set outer_loop = loop %}
+                                {% if exp.description %}
+                                {% for line in exp.description.split('\n') %}
+                                {% if line.strip() %}
+                                <li class="flex items-start gap-2">
+                                    <i
+                                        class="ri-checkbox-circle-fill {% if outer_loop.first %}text-cyan-500{% else %}text-slate-600{% endif %} mt-1"></i>
+                                    <span>{{ line.strip() }}</span>
                                 </li>
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-cyan-500 mt-1"></i><span>带领团队完成多个大型项目的交付</span>
-                                </li>
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-cyan-500 mt-1"></i><span>优化性能，提升用户体验</span>
-                                </li>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
                             </ul>
                         </div>
                     </div>
-                    <div
-                        class="relative pl-8 border-l-2 border-slate-700 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                        <div class="absolute -left-2 top-0 w-4 h-4 bg-slate-700 rounded-full"></div>
-                        <div class="bg-slate-900 rounded-xl p-6 border border-slate-800">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-white">前端工程师</h3><span
-                                    class="text-slate-400 text-sm font-medium">2019 - 2021</span>
-                            </div>
-                            <p class="text-slate-400 mb-3">某互联网公司</p>
-                            <ul class="text-slate-400 text-sm space-y-2">
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-slate-600 mt-1"></i><span>参与多个Web应用的开发与维护</span>
-                                </li>
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-slate-600 mt-1"></i><span>与设计师和后端工程师紧密协作</span>
-                                </li>
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-slate-600 mt-1"></i><span>学习并应用最新的前端技术</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div
-                        class="relative pl-8 border-l-2 border-slate-700 animate-on-scroll opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                        <div class="absolute -left-2 top-0 w-4 h-4 bg-slate-700 rounded-full"></div>
-                        <div class="bg-slate-900 rounded-xl p-6 border border-slate-800">
-                            <div class="flex justify-between items-start mb-3">
-                                <h3 class="text-xl font-bold text-white">前端实习生</h3><span
-                                    class="text-slate-400 text-sm font-medium">2018 - 2019</span>
-                            </div>
-                            <p class="text-slate-400 mb-3">某创业公司</p>
-                            <ul class="text-slate-400 text-sm space-y-2">
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-slate-600 mt-1"></i><span>协助开发公司官网和管理系统</span>
-                                </li>
-                                <li class="flex items-start gap-2"><i
-                                        class="ri-checkbox-circle-fill text-slate-600 mt-1"></i><span>学习前端开发的基础知识和最佳实践</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
         </section>
@@ -308,8 +313,7 @@
                                 <span class="text-white text-xl font-bold">M</span>
                             </div><span class="text-white font-semibold text-lg">Xiao Ma's Digital Garden</span>
                         </div>
-                        <p class="text-slate-400 text-sm leading-relaxed mb-4">A modern personal website showcasing
-                            creativity, technology, and design. Recording projects, thoughts, and growth journey.
+                        <p class="text-slate-400 text-sm leading-relaxed mb-4">一个展示创意、技术和设计的现代个人网站。记录项目、想法和成长历程。
                         </p>
                         <div class="flex gap-3"><a
                                 class="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 hover:text-cyan-400 hover:bg-slate-700 transition-all duration-300 cursor-pointer"
@@ -338,7 +342,7 @@
                         <h3 class="text-white font-semibold mb-4">Contact</h3>
                         <ul class="space-y-2">
                             <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
-                                    href="mailto:{{ profile.email }}">{{ profile.email }}</a></li>
+                                    href="mailto:mqtfire@qq.com">mqtfire@qq.com</a></li>
                             <li><a class="text-slate-400 hover:text-cyan-400 transition-colors duration-300 text-sm cursor-pointer"
                                     data-discover="true" href="{{ url_for('blog') }}">Blog</a></li>
                         </ul>
