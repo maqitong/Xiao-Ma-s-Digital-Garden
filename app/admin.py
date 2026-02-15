@@ -1,3 +1,4 @@
+import markdown
 from fastapi import APIRouter, Request, Depends, Form, status, UploadFile, File
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
@@ -233,10 +234,62 @@ async def add_blog_post(
     tags: str = Form(""),
     db: Session = Depends(get_db)
 ):
+    # Store Raw Content (Markdown or HTML) directly
+    # Rendering will happen at display time in main.py
     crud.create_blog_post(db, title, excerpt, content, cover_image, author, date, tags)
     return RedirectResponse(url="/admin/blog", status_code=status.HTTP_303_SEE_OTHER)
 
 @router.get("/blog/delete/{id}")
 async def delete_blog_post(id: int, db: Session = Depends(get_db)):
     crud.delete_blog_post(db, id)
+    return RedirectResponse(url="/admin/blog", status_code=status.HTTP_303_SEE_OTHER)
+
+@router.get("/blog/edit/{id}", response_class=HTMLResponse)
+async def edit_blog_post(id: int, request: Request, db: Session = Depends(get_db)):
+    post = crud.get_blog_post(db, id)
+    if not post:
+        return RedirectResponse(url="/admin/blog", status_code=status.HTTP_303_SEE_OTHER)
+    return templates.TemplateResponse("admin/edit_blog.html", {"request": request, "post": post})
+
+@router.post("/blog/edit/{id}")
+async def update_blog_post(
+    id: int,
+    request: Request,
+    title: str = Form(...),
+    excerpt: str = Form(...),
+    content: str = Form(...),
+    cover_image: str = Form(""),
+    author: str = Form("Xiao Ma"),
+    date: str = Form(...),
+    tags: str = Form(""),
+    db: Session = Depends(get_db)
+):
+    # Same here, convert MD to HTML
+    # Note: This implies the user must input Markdown in the edit box.
+    # If the database stores HTML, converting HTML to Markdown for editing is hard.
+    # Strategy: For this task, we will assume the user inputs Markdown.
+    # But if we load HTML into the textarea, it will be messy.
+    # Ideally, we should add a 'content_md' column. 
+    # However, to avoid DB migration complexity for this task, 
+    # we will just support writing HTML/Markdown mixed or just Markdown.
+    # If we overwrite 'content' with HTML, next time we edit we see HTML.
+    # This is not ideal for "Markdown Support".
+    # Correct approach:
+    # 1. Add `content_source` column to BlogPost to store raw Markdown.
+    # 2. Render HTML on the fly or store compiled HTML in `content`.
+    # Given the constraint of "simple changes", let's try to just render on the fly in the frontend?
+    # No, Jinja2 doesn't render MD by default.
+    # Let's update the model to store raw markdown if possible?
+    # Or just assume the 'content' field stores Markdown, and we render it at runtime.
+    # Let's check `app/models.py` again.
+    
+    # If we change `content` to store Markdown, existing HTML posts might break if we treat them as MD?
+    # Markdown parser usually handles HTML fine.
+    # So, let's change the strategy:
+    # 1. `content` stores Raw Markdown (or HTML).
+    # 2. `admin` saves raw content.
+    # 3. `main.py` renders Markdown to HTML when serving the post.
+    
+    # So in `admin.py`, we should NOT convert to HTML. We just save as is.
+    crud.update_blog_post(db, id, title, excerpt, content, cover_image, author, date, tags)
     return RedirectResponse(url="/admin/blog", status_code=status.HTTP_303_SEE_OTHER)

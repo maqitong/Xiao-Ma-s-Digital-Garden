@@ -73,6 +73,37 @@ async def read_blog(request: Request, db: Session = Depends(get_db)):
     blog_posts = crud.get_blog_posts(db)
     return templates.TemplateResponse("blog.html", {"request": request, "blog_posts": blog_posts})
 
+import markdown
+
+# Helper to render markdown
+def render_markdown(content):
+    if not content:
+        return ""
+    # Use extra extensions for better experience
+    return markdown.markdown(content, extensions=['fenced_code', 'tables', 'nl2br'])
+
+@app.get("/blog/{post_id}", response_class=HTMLResponse, name="blog_post")
+async def read_blog_post(post_id: int, request: Request, db: Session = Depends(get_db)):
+    post = crud.get_blog_post(db, post_id)
+    if not post:
+        raise HTTPException(status_code=404, detail="Blog post not found")
+    
+    # Render Markdown to HTML on the fly
+    # We create a new object or modify a copy to avoid detaching from session issues if we were to modify the ORM object directly
+    # But for template rendering, we can just pass a modified dict or wrap the object.
+    # Simple way: just assign to a temporary attribute on the object if python allows, or pass as separate variable.
+    # Python objects are dynamic.
+    post.html_content = render_markdown(post.content)
+    
+    return templates.TemplateResponse("post.html", {"request": request, "post": post})
+
+@app.get("/search", response_class=HTMLResponse, name="search")
+async def search(request: Request, q: str = "", db: Session = Depends(get_db)):
+    results = {"blog_posts": [], "projects": []}
+    if q:
+        results = crud.search_content(db, q)
+    return templates.TemplateResponse("search.html", {"request": request, "results": results, "query": q})
+
 @app.post("/api/message")
 async def create_message(
     request: Request,

@@ -144,3 +144,40 @@ def delete_blog_post(db: Session, post_id: int):
     if post:
         db.delete(post)
         db.commit()
+
+def get_blog_post(db: Session, post_id: int):
+    return db.query(models.BlogPost).filter(models.BlogPost.id == post_id).first()
+
+def update_blog_post(db: Session, post_id: int, title, excerpt, content, cover_image, author, date, tags):
+    post = db.query(models.BlogPost).filter(models.BlogPost.id == post_id).first()
+    if post:
+        post.title = title
+        post.excerpt = excerpt
+        post.content = content
+        post.cover_image = cover_image
+        post.author = author
+        post.date = date
+        post.tags = tags
+        db.commit()
+        db.refresh(post)
+    return post
+
+def search_content(db: Session, query: str):
+    # Search in Blog Posts
+    blog_results = db.query(models.BlogPost).filter(
+        (models.BlogPost.title.contains(query)) | 
+        (models.BlogPost.content.contains(query)) |
+        (models.BlogPost.tags.contains(query))
+    ).all()
+    
+    # Search in Projects
+    project_results = db.query(models.Project).filter(
+        (models.Project.title.contains(query)) | 
+        (models.Project.description.contains(query)) |
+        (models.Project.tags.contains(query))
+    ).all()
+    
+    return {
+        "blog_posts": blog_results,
+        "projects": project_results
+    }

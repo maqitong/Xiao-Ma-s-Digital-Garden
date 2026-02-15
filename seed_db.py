@@ -11,9 +11,9 @@ def seed():
         print("Creating Profile...")
         profile = models.Profile(
             name="小马",
-            role="全栈开发工程师",
-            bio="热爱技术，追求卓越。专注于构建高性能、用户友好的 Web 应用。",
-            email="contact@xiaoma.dev",
+            role="全栈开发工程师 / 摄影爱好者",
+            bio="热爱技术，追求卓越。专注于构建高性能、用户友好的 Web 应用。在工作之余，我也喜欢通过镜头记录生活的美好。",
+            email="mqtfire@qq.com",
             resume_url="/static/resumes/resume.pdf"
         )
         db.add(profile)
@@ -22,8 +22,24 @@ def seed():
     if db.query(models.Experience).count() == 0:
         print("Creating Experience...")
         exps = [
-            models.Experience(title="高级前端工程师", company="Tech Corp", duration="2021 - 至今", description="负责核心产品的前端架构设计与开发，带领团队完成多个大型项目重构。"),
-            models.Experience(title="前端工程师", company="StartUp Inc", duration="2019 - 2021", description="参与早期产品研发，独立负责后台管理系统开发。")
+            models.Experience(
+                title="高级前端工程师", 
+                company="某科技公司", 
+                duration="2021 - 至今", 
+                description="负责公司核心产品的前端架构设计与开发\n带领团队完成多个大型项目的交付\n优化性能，提升用户体验"
+            ),
+            models.Experience(
+                title="前端工程师", 
+                company="某互联网公司", 
+                duration="2019 - 2021", 
+                description="参与多个Web应用的开发与维护\n与设计师和后端工程师紧密协作\n学习并应用最新的前端技术"
+            ),
+            models.Experience(
+                title="前端实习生", 
+                company="某创业公司", 
+                duration="2018 - 2019", 
+                description="协助开发公司官网和管理系统\n学习前端开发的基础知识和最佳实践"
+            )
         ]
         db.add_all(exps)
 
@@ -31,7 +47,7 @@ def seed():
     if db.query(models.Education).count() == 0:
         print("Creating Education...")
         edus = [
-            models.Education(degree="计算机科学学士", school="某某大学", duration="2015 - 2019")
+            models.Education(degree="计算机科学学士", school="某大学", duration="2015 - 2019")
         ]
         db.add_all(edus)
 
@@ -44,9 +60,9 @@ def seed():
             models.Skill(name="Tailwind CSS", category="Frontend"),
             models.Skill(name="Vue.js", category="Frontend"),
             models.Skill(name="Node.js", category="Backend"),
-            models.Skill(name="Python", category="Backend"),
-            models.Skill(name="PostgreSQL", category="Backend"),
-            models.Skill(name="Figma", category="Tools"),
+            models.Skill(name="Python / FastAPI", category="Backend"),
+            models.Skill(name="PostgreSQL / SQLite", category="Backend"),
+            models.Skill(name="Git / Docker", category="Tools"),
         ]
         db.add_all(skills)
 
@@ -55,52 +71,20 @@ def seed():
         print("Creating Projects...")
         projects = [
             models.Project(
-                title="E-Commerce Platform",
-                description="A full-featured online store built with Next.js and Stripe integration. Includes product management, cart functionality, and secure checkout.",
+                title="个人数字花园",
+                description="基于 FastAPI 和 Tailwind CSS 构建的现代化个人网站，集成博客、作品集和管理后台。",
+                image_url="/static/gallery_files/1.png",
+                link="#",
+                category="Web Development",
+                tags="FastAPI, Tailwind, Jinja2"
+            ),
+            models.Project(
+                title="电商平台前端重构",
+                description="使用 Next.js 对原有电商系统进行性能优化和 SEO 重构，提升首屏加载速度 40%。",
                 image_url="/static/projects_files/search-image.jpg",
                 link="#",
                 category="Web Development",
-                tags="Next.js, Stripe, Tailwind"
-            ),
-            models.Project(
-                title="Task Management App",
-                description="A productivity tool for teams to organize tasks and track progress. Features real-time updates and collaborative boards.",
-                image_url="/static/projects_files/search-image(1).jpg",
-                link="#",
-                category="Productivity",
-                tags="React, Firebase, Redux"
-            ),
-            models.Project(
-                title="Social Media Dashboard",
-                description="Analytics dashboard for tracking social media performance. Visualizes data with interactive charts and graphs.",
-                image_url="/static/projects_files/search-image(2).jpg",
-                link="#",
-                category="UI/UX Design",
-                tags="Vue.js, Chart.js, Figma"
-            ),
-            models.Project(
-                title="Travel Booking System",
-                description="A comprehensive booking platform for flights and hotels. Integrates with multiple APIs for real-time pricing.",
-                image_url="/static/projects_files/search-image(3).jpg",
-                link="#",
-                category="Web Development",
-                tags="Python, Django, PostgreSQL"
-            ),
-            models.Project(
-                title="Fitness Tracker App",
-                description="Mobile-first application to track workouts and nutrition. Syncs with wearable devices.",
-                image_url="/static/projects_files/search-image(4).jpg",
-                link="#",
-                category="Mobile App",
-                tags="React Native, Node.js"
-            ),
-            models.Project(
-                title="Portfolio Website",
-                description="A modern, responsive portfolio website template for designers and developers.",
-                image_url="/static/projects_files/search-image(5).jpg",
-                link="#",
-                category="Web Design",
-                tags="HTML, CSS, JavaScript"
+                tags="Next.js, TypeScript"
             ),
         ]
         db.add_all(projects)
@@ -109,15 +93,13 @@ def seed():
     if db.query(models.GalleryItem).count() == 0:
         print("Creating Gallery Items...")
         items = [
-            models.GalleryItem(title="Mountain Sunrise", description="云南·梅里雪山", image_url="/static/gallery_files/search-image.jpg", category="Photography"),
-            models.GalleryItem(title="City Lights", description="上海·外滩", image_url="/static/gallery_files/search-image(1).jpg", category="Photography"),
-            models.GalleryItem(title="Street Portrait", description="北京·798艺术区", image_url="/static/gallery_files/search-image(2).jpg", category="Photography"),
-            models.GalleryItem(title="Ocean Waves", description="海南·三亚", image_url="/static/gallery_files/search-image(3).jpg", category="Photography"),
-            models.GalleryItem(title="Modern Architecture", description="深圳·平安金融中心", image_url="/static/gallery_files/search-image(4).jpg", category="Photography"),
-            models.GalleryItem(title="Forest Path", description="四川·九寨沟", image_url="/static/gallery_files/search-image(5).jpg", category="Photography"),
-            models.GalleryItem(title="Golden Hour", description="杭州·西湖", image_url="/static/gallery_files/search-image(6).jpg", category="Photography"),
-            models.GalleryItem(title="Cherry Blossoms", description="武汉·东湖", image_url="/static/gallery_files/search-image(7).jpg", category="Photography"),
-            models.GalleryItem(title="Night Market", description="台北·士林夜市", image_url="/static/gallery_files/search-image(8).jpg", category="Photography"),
+            models.GalleryItem(title="摄影作品 1", description="昙华林游记", image_url="/static/gallery_files/1.png", category="Photography"),
+            models.GalleryItem(title="生活记录 2", description="城市角落", image_url="/static/gallery_files/2.jpg", category="Life"),
+            models.GalleryItem(title="生活记录 3", description="光影瞬间", image_url="/static/gallery_files/3.jpg", category="Life"),
+            models.GalleryItem(title="生活记录 4", description="静谧时刻", image_url="/static/gallery_files/4.jpg", category="Life"),
+            models.GalleryItem(title="生活记录 5", description="街头色彩", image_url="/static/gallery_files/5.jpg", category="Life"),
+            models.GalleryItem(title="生活记录 6", description="午后时光", image_url="/static/gallery_files/6.jpg", category="Life"),
+            models.GalleryItem(title="生活记录 7", description="夜色朦胧", image_url="/static/gallery_files/7.jpg", category="Life"),
         ]
         db.add_all(items)
 
@@ -125,8 +107,7 @@ def seed():
     if db.query(models.VideoItem).count() == 0:
         print("Creating Video Items...")
         items = [
-            models.VideoItem(title="Web Development Tutorial", description="Building a React app from scratch.", video_url="#", thumbnail_url="/static/videos_files/search-image.jpg", platform="YouTube"),
-            models.VideoItem(title="UI Design Process", description="Designing a mobile app interface.", video_url="#", thumbnail_url="/static/videos_files/search-image(1).jpg", platform="Bilibili"),
+            models.VideoItem(title="技术分享视频", description="关于 FastAPI 的实战教程。", video_url="#", thumbnail_url="/static/videos_files/search-image.jpg", platform="Bilibili"),
         ]
         db.add_all(items)
 
@@ -135,22 +116,13 @@ def seed():
         print("Creating Blog Posts...")
         posts = [
             models.BlogPost(
-                title="React 19 新特性深度解析", 
-                excerpt="探索 React 19 带来的新特性，包括 Server Components, Actions 等。",
-                content="<p>React 19 带来了革命性的变化...</p>",
+                title="我的网站上线啦", 
+                excerpt="记录一下数字花园从构思到部署的全过程。",
+                content="<p>这是我的第一篇博客内容...</p>",
                 cover_image="/static/blog_files/search-image.jpg",
-                author="Xiao Ma",
-                date="2024-03-15",
-                tags="React, Frontend"
-            ),
-            models.BlogPost(
-                title="构建高性能的 Web 应用", 
-                excerpt="分享一些提升 Web 应用性能的实用技巧和最佳实践。",
-                content="<p>性能优化是 Web 开发中不可忽视的一环...</p>",
-                cover_image="/static/blog_files/search-image(1).jpg",
-                author="Xiao Ma",
-                date="2024-03-10",
-                tags="Performance, Web"
+                author="小马",
+                date="2024-01-15",
+                tags="Announcement"
             ),
         ]
         db.add_all(posts)

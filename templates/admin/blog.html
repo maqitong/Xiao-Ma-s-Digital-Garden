@@ -80,8 +80,13 @@
                             <div class="text-xs text-gray-500 truncate max-w-md">{{ post.excerpt }}</div>
                         </td>
                         <td class="px-6 py-4">
-                            <a href="/admin/blog/delete/{{ post.id }}" class="text-red-500 hover:text-red-700"
-                                onclick="return confirm('Delete this post?')">Delete</a>
+                            <div class="flex items-center gap-3">
+                                <a href="/admin/blog/edit/{{ post.id }}"
+                                    class="text-blue-500 hover:text-blue-700">Edit</a>
+                                <span class="text-gray-300">|</span>
+                                <a href="/admin/blog/delete/{{ post.id }}" class="text-red-500 hover:text-red-700"
+                                    onclick="return confirm('Delete this post?')">Delete</a>
+                            </div>
                         </td>
                     </tr>
                     {% else %}
